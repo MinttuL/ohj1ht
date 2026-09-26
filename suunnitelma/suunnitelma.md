@@ -1,12 +1,8 @@
 # Harjoitustyön suunnitelma
 
-(Täydennä oman pelisi tiedot tähän tiedostoon muokkaamalla 
-tiedostoa tekstieditorissa. Käytä [Markdown-syntaksia](https://about.gitlab.com/handbook/markdown-guide/).
-Poista sitten *kaikki* suluilla merkityt kohdat.)
-
 ## Tietoja 
 
-Tekijä: Minttu Lyytinen
+Tekijä: Minttu Lyytinen 
 
 Työ git-varaston osoite: https://github.com/MinttuL/ohj1ht.git
 
