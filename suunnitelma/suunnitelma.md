@@ -6,46 +6,44 @@ Poista sitten *kaikki* suluilla merkityt kohdat.)
 
 ## Tietoja 
 
-Tekijä: (Etunimi Sukunimi)
+Tekijä: Minttu Lyytinen
 
-Työ git-varaston osoite: <https://gitlab.jyu.fi/anlakane/ohj1ht> (*Korvaa* tämä osoite oman git-varastosi osoitteella)
+Työ git-varaston osoite: https://github.com/MinttuL/ohj1ht.git
 
-Pelin nimi: (Nimi)
+Pelin nimi: Kolikkokeräilijä
 
-Pelialusta: Windows/macOS/Linux (Valitse alusta)
+Pelialusta: Windows
 
-Pelaajien lukumäärä: 1/2/3/4 (Valitse pelaajien lukumäärä)
+Pelaajien lukumäärä: 1
 
 ## Pelin tarina
 
-(Pelin tarina.)
+Pelin hahmo seikkailee pelialueella metsästäen kultaisia kolikoita.
 
 ## Pelin idea ja tavoitteet
 
-(Pelin idea ja tavoitteet.)
+Kolikkojen keräily. Tavoitteena kerätä mahdollisimman paljon kolikkoja ja saada mahdollisimman korkea pistemäärä.
 
 ## Hahmotelma pelistä
 
-(Kun olet lisännyt suunnitelmakuvan tähän hakemistoon, linkitä se tähän alle. Alla on esimerkkikuvan linkitys.)
-
-![Esimerkkikuva](esimerkkikuva.png "Esimerkkikuva")
+![Esimerkkikuva](Kolikkokeräilijä.png "Kolikkokeräilijä")
 
 ## Toteutuksen suunnitelma
 
-Helmikuu
+Lokakuu
 
-- (Tavoite 1)
-- (Tavoite 2)
-- (Tavoite 3)
+- Pelin perusrakenne, pelialue ja pelaaja
+- Pelaajan liikutus näytöllä
+- Kolikoiden luominen ja putoaminen ylhäältä alas
 
-Maaliskuu
+Marraskuu
 
-- (Tavoite 1)
-- (Tavoite 2)
-- (Tavoite 3)
+- Pelaajan ja kolikoiden törmäykset + pisteenlasku
+- Lisään listan, silmukat ja tarvittavat aliohjelmat peliin
+- Lisään ajastimen, pelin päättymisen ja viimeistelen pelin
 
 Jos aikaa jää
 
-- (Tavoite 1)
-- (Tavoite 2)
-- (Tavoite 3)
+- Lisään peliin erilaisia kolikoita tai kerättäviä esineitä
+- Teen pelistä haastavamman esimerkiksi nopeuttamalla kolikoiden putoamista
+- Viimeistelen pelin ulkoasua ja käyttöliittymää
