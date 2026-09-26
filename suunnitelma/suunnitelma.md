@@ -22,7 +22,7 @@ Kolikkojen keräily. Tavoitteena kerätä mahdollisimman paljon kolikkoja ja saa
 
 ## Hahmotelma pelistä
 
-![Pelin hahmotelma](Kolikkokeräilijä.png "Kolikkokeräilijä")
+![Pelin hahmotelma](kolikkokerailija.png "kolikkokerailija")
 
 ## Toteutuksen suunnitelma
 
