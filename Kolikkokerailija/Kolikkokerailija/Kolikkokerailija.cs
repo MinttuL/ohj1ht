@@ -14,9 +14,20 @@ public class Kolikkokerailija : PhysicsGame
 {
     public override void Begin()
     {
+        LuoKentta();
         // Kirjoita ohjelmakoodisi tähän
 
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
+    }
+
+    private void LuoKentta()
+    {
+        Level.Width = 1200;
+        Level.Height = 800; 
+        
+        Level.CreateBorders();
+        
+        Camera.ZoomToLevel();
     }
 }
