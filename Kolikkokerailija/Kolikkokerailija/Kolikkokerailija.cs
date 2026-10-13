@@ -20,7 +20,7 @@ public class Kolikkokerailija : PhysicsGame
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
     }
-
+// Luodaan pelimaailmalle rajat
     private void LuoKentta()
     {
         Level.Width = 1200;
