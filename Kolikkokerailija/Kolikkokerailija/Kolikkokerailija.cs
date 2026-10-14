@@ -20,13 +20,20 @@ public class Kolikkokerailija : PhysicsGame
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
     }
-// Luodaan pelimaailmalle rajat
+// Luodaan pelimaailmalle rajat ja tausta
     private void LuoKentta()
     {
         Level.Width = 1200;
         Level.Height = 800; 
         
         Level.CreateBorders();
+
+        Level.BackgroundColor = Color.LightBlue;
+
+        PhysicsObject maa = PhysicsObject.CreateStaticObject(Level.Width, 150);
+        maa.Y = Level.Bottom + 50;
+        maa.Color = Color.ForestGreen;
+        Add(maa);
         
         Camera.ZoomToLevel();
     }
