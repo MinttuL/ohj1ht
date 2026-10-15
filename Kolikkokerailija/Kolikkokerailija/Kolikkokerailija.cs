@@ -6,10 +6,10 @@ using Jypeli.Assets;
 using Jypeli.Controls;
 using Jypeli.Widgets;
 
-/// @author mintt
+/// @author minttu lyytinen
 /// @version 13.10.2026
 /// <summary>
-/// 
+/// Kolikkokeräilijä -peli Ohjelmointi 1 -kurssi
 /// </summary>
 public class Kolikkokerailija : PhysicsGame
 {
@@ -25,8 +25,9 @@ public class Kolikkokerailija : PhysicsGame
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
     }
-
-// Luodaan pelimaailmalle rajat ja tausta
+/// <summary>
+/// Luodaan pelikentälle rajat ja tausta
+/// </summary>
     private void LuoKentta()
     {
         Level.Width = 1200;
@@ -34,7 +35,7 @@ public class Kolikkokerailija : PhysicsGame
 
         Level.CreateBorders();
 
-        Level.BackgroundColor = Color.LightBlue;
+        Level.Background.Color = Color.LightBlue;
 
         PhysicsObject maa = PhysicsObject.CreateStaticObject(Level.Width, 150);
         maa.Y = Level.Bottom + 50;
@@ -43,7 +44,9 @@ public class Kolikkokerailija : PhysicsGame
 
         Camera.ZoomToLevel();
     }
-
+/// <summary>
+/// Luodaan pelaaja
+/// </summary>
     private void LuoPelaaja()
     {
         pallo = new PhysicsObject(50.0, 50.0);
@@ -53,15 +56,23 @@ public class Kolikkokerailija : PhysicsGame
         pallo.Y = -300.0;
         Add(pallo);
     }
-
+/// <summary>
+/// Asetetaan ohjaimet
+/// </summary>
     private void AsetaOhjaimet()
     {
-        Keyboard.Listen(Key.Left, ButtonState.Down, LiikutaPalloa, "Liiku vasemmalle", new Vector(-1000, 0));
-        Keyboard.Listen(Key.Right, ButtonState.Down, LiikutaPalloa, "Liiku oikealle", new Vector(1000, 0));
+        Keyboard.Listen(Key.Left, ButtonState.Down, LiikutaPalloa, "Liiku vasemmalle", -1000.0);
+        Keyboard.Listen(Key.Right, ButtonState.Down, LiikutaPalloa, "Liiku oikealle", 1000.0);
+        
+        Keyboard.Listen(Key.Left, ButtonState.Released, LiikutaPalloa, null, 0.0);
+        Keyboard.Listen(Key.Right, ButtonState.Released, LiikutaPalloa, null, 0.0);
     }
-
-    private void LiikutaPalloa(Vector voima)
+/// <summary>
+/// Asetetaan pallon liikenopeus
+/// </summary>
+/// <param name="nopeus"></param>
+    private void LiikutaPalloa(double nopeus)
     {
-        pallo.Push(voima);
+        pallo.Velocity = new Vector(nopeus, pallo.Velocity.Y);
     }
 }
