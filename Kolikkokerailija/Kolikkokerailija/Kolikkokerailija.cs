@@ -14,7 +14,9 @@ using Timer = Jypeli.Timer;
 /// </summary>
 public class Kolikkokerailija : PhysicsGame
 {
-    private PhysicsObject pallo;
+    private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
+    
+    private PhysicsObject suorakolmio;
     private List<PhysicsObject> aktiivisetKolikot = new List<PhysicsObject>();
 
     public override void Begin()
@@ -54,31 +56,36 @@ public class Kolikkokerailija : PhysicsGame
 /// </summary>
     private void LuoPelaaja()
     {
-        pallo = new PhysicsObject(50.0, 50.0);
-        pallo.Shape = Shape.Circle;
-        pallo.Color = Color.Pink;
-        pallo.X = -0.0;
-        pallo.Y = -300.0;
-        Add(pallo);
+        suorakolmio = new PhysicsObject(150.0, 200.0);
+        suorakolmio.Shape = Shape.Rectangle;
+        suorakolmio.Image = PRINSESSA_KUVA;
+        
+        suorakolmio.X = -0.0;
+        suorakolmio.Y = -300.0;
+        suorakolmio.Restitution = 0.0;
+        
+        suorakolmio.MomentOfInertia = Double.PositiveInfinity;
+        
+        Add(suorakolmio);
     }
 /// <summary>
 /// Asetetaan ohjaimet
 /// </summary>
     private void AsetaOhjaimet()
     {
-        Keyboard.Listen(Key.Left, ButtonState.Down, LiikutaPalloa, "Liiku vasemmalle", -1000.0);
-        Keyboard.Listen(Key.Right, ButtonState.Down, LiikutaPalloa, "Liiku oikealle", 1000.0);
+        Keyboard.Listen(Key.Left, ButtonState.Down, LiikutaHahmoa, "Liiku vasemmalle", -1000.0);
+        Keyboard.Listen(Key.Right, ButtonState.Down, LiikutaHahmoa, "Liiku oikealle", 1000.0);
         
-        Keyboard.Listen(Key.Left, ButtonState.Released, LiikutaPalloa, null, 0.0);
-        Keyboard.Listen(Key.Right, ButtonState.Released, LiikutaPalloa, null, 0.0);
+        Keyboard.Listen(Key.Left, ButtonState.Released, LiikutaHahmoa, null, 0.0);
+        Keyboard.Listen(Key.Right, ButtonState.Released, LiikutaHahmoa, null, 0.0);
     }
 /// <summary>
-/// Asetetaan pallon liikenopeus
+/// Asetetaan hahmon liikenopeus
 /// </summary>
 /// <param name="nopeus"></param>
-    private void LiikutaPalloa(double nopeus)
+    private void LiikutaHahmoa (double nopeus)
     {
-        pallo.Velocity = new Vector(nopeus, pallo.Velocity.Y);
+        suorakolmio.Velocity = new Vector(nopeus, suorakolmio.Velocity.Y);
     }
 
 /// <summary >
@@ -104,7 +111,7 @@ public class Kolikkokerailija : PhysicsGame
         
         aktiivisetKolikot.Add(kolikko);
 
-        AddCollisionHandler(pallo, kolikko, OsumaKolikkoon);
+        AddCollisionHandler(suorakolmio, kolikko, OsumaKolikkoon);
         
         Add(kolikko);
     }
