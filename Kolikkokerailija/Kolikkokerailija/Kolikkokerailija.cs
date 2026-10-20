@@ -15,6 +15,7 @@ using Timer = Jypeli.Timer;
 public class Kolikkokerailija : PhysicsGame
 {
     private PhysicsObject pallo;
+    private List<PhysicsObject> aktiivisetKolikot = new List<PhysicsObject>();
 
     public override void Begin()
     {
@@ -86,7 +87,7 @@ public class Kolikkokerailija : PhysicsGame
     private void LuoKolikkoAjastin()
     {
         Timer kolikkoAjastin = new Timer();
-        kolikkoAjastin.Interval = 1.5; //uusi kolikko 1,5 sekunnon välein
+        kolikkoAjastin.Interval = 1.5; //uusi kolikko 1,5 sekunnin välein
         kolikkoAjastin.Timeout += LuoKolikko;
         kolikkoAjastin.Start();
     }
@@ -100,7 +101,18 @@ public class Kolikkokerailija : PhysicsGame
         double satunnainenX = RandomGen.NextDouble(Level.Left + 50, Level.Right - 50.0);
         kolikko.X = satunnainenX;
         kolikko.Y = Level.Top - 40;
+        
+        aktiivisetKolikot.Add(kolikko);
 
+        AddCollisionHandler(pallo, kolikko, OsumaKolikkoon);
+        
         Add(kolikko);
     }
+
+    private void OsumaKolikkoon(PhysicsObject pelaaja, PhysicsObject kolikko)
+    {
+        aktiivisetKolikot.Remove(kolikko);
+        kolikko.Destroy();
+    }
+    
 }
