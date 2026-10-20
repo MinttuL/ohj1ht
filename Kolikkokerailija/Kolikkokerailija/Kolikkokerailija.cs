@@ -15,6 +15,8 @@ using Timer = Jypeli.Timer;
 public class Kolikkokerailija : PhysicsGame
 {
     private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
+    private static readonly Image KUKKA_KUVA = LoadImage("kukka.png");
+    
     private IntMeter pistelaskuri;
     private PhysicsObject suorakolmio;
     private List<PhysicsObject> aktiivisetKolikot = new List<PhysicsObject>();
@@ -102,9 +104,10 @@ public class Kolikkokerailija : PhysicsGame
 
     private void LuoKolikko()
     {
-        PhysicsObject kolikko = new PhysicsObject(30.0, 30.0);
+        PhysicsObject kolikko = new PhysicsObject(50.0, 50.0);
         kolikko.Shape = Shape.Circle;
         kolikko.Color = Color.Yellow;
+        kolikko.Image = KUKKA_KUVA;
 
         double satunnainenX = RandomGen.NextDouble(Level.Left + 50, Level.Right - 50.0);
         kolikko.X = satunnainenX;
