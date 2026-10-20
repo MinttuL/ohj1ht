@@ -108,7 +108,11 @@ public class Kolikkokerailija : PhysicsGame
         
         Add(kolikko);
     }
-
+/// <summary>
+/// Poistetaan kerätty kolikko listasta ja pelialueelta
+/// </summary>
+/// <param name="pelaaja"></param>
+/// <param name="kolikko"></param>
     private void OsumaKolikkoon(PhysicsObject pelaaja, PhysicsObject kolikko)
     {
         aktiivisetKolikot.Remove(kolikko);
