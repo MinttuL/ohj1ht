@@ -126,7 +126,9 @@ public class Kolikkokerailija : PhysicsGame
         aktiivisetKolikot.Remove(kolikko);
         kolikko.Destroy();
     }
-
+/// <summary>
+/// Luodaan pistelaskuri näkyviin
+/// </summary>
     private void LuoPistelaskuri()
     {
         pistelaskuri = new IntMeter(0);
