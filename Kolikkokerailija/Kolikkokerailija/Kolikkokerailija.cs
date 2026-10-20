@@ -15,7 +15,7 @@ using Timer = Jypeli.Timer;
 public class Kolikkokerailija : PhysicsGame
 {
     private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
-    
+    private IntMeter pistelaskuri;
     private PhysicsObject suorakolmio;
     private List<PhysicsObject> aktiivisetKolikot = new List<PhysicsObject>();
 
@@ -27,6 +27,7 @@ public class Kolikkokerailija : PhysicsGame
         LuoPelaaja();
         AsetaOhjaimet();
         LuoKolikkoAjastin();
+        LuoPistelaskuri();
         // Kirjoita ohjelmakoodisi tähän
 
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
@@ -125,5 +126,20 @@ public class Kolikkokerailija : PhysicsGame
         aktiivisetKolikot.Remove(kolikko);
         kolikko.Destroy();
     }
+
+    private void LuoPistelaskuri()
+    {
+        pistelaskuri = new IntMeter(0);
+
+        Label pistenaytto = new Label();
+        pistenaytto.X = Screen.Left + 50;
+        pistenaytto.Y = Screen.Top -100;
+        pistenaytto.Color = Color.LightPink;
+        pistenaytto.Title = ("Pisteet:");
+        pistenaytto.BindTo(pistelaskuri);
+
+        Add (pistenaytto);
+    }
+    
     
 }
