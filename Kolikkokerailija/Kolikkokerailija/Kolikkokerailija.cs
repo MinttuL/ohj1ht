@@ -14,6 +14,9 @@ using Timer = Jypeli.Timer;
 /// </summary>
 public class Kolikkokerailija : PhysicsGame
 {
+    private const double pelinkesto = 60.0; //Ei vielä asetettu koodiin
+    private const double hahmonnopeus = 1000.0;
+    
     private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
     private static readonly Image KUKKA_KUVA = LoadImage("kukka.png");
     
@@ -76,8 +79,8 @@ public class Kolikkokerailija : PhysicsGame
 /// </summary>
     private void AsetaOhjaimet()
     {
-        Keyboard.Listen(Key.Left, ButtonState.Down, LiikutaHahmoa, "Liiku vasemmalle", -1000.0);
-        Keyboard.Listen(Key.Right, ButtonState.Down, LiikutaHahmoa, "Liiku oikealle", 1000.0);
+        Keyboard.Listen(Key.Left, ButtonState.Down, LiikutaHahmoa, "Liiku vasemmalle", -hahmonnopeus);
+        Keyboard.Listen(Key.Right, ButtonState.Down, LiikutaHahmoa, "Liiku oikealle", hahmonnopeus);
         
         Keyboard.Listen(Key.Left, ButtonState.Released, LiikutaHahmoa, null, 0.0);
         Keyboard.Listen(Key.Right, ButtonState.Released, LiikutaHahmoa, null, 0.0);
