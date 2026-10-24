@@ -14,7 +14,7 @@ using Timer = Jypeli.Timer;
 /// </summary>
 public class Kolikkokerailija : PhysicsGame
 {
-    private const double PELIN_KESTO = 60.0; //Ei vielä asetettu koodiin
+    private const double PELIN_KESTO = 30.0; //Ei vielä asetettu koodiin
     private const double HAHMON_NOPEUS = 1000.0;
 
     private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
@@ -106,7 +106,7 @@ public class Kolikkokerailija : PhysicsGame
     /// </summary>
     private void LuoKolikkoAjastin()
     {
-        Timer kolikkoAjastin = new Timer();
+        kolikkoAjastin = new Timer();
         kolikkoAjastin.Interval = 1.5; //uusi kolikko 1,5 sekunnin välein
         kolikkoAjastin.Timeout += LuoKolikko;
         kolikkoAjastin.Start();
@@ -189,7 +189,9 @@ public class Kolikkokerailija : PhysicsGame
 
         Add(aikanaytto);
     }
-
+/// <summary>
+/// Kutsutaan kun aika loppuu. Pysäyttää ajastimen, tyhjentää kentän ja näyttää lopputuloksen.
+/// </summary>
     private void PeliPaattyi()
     {
         kolikkoAjastin.Stop();
@@ -208,7 +210,11 @@ public class Kolikkokerailija : PhysicsGame
         viesti.Closed += delegate { ConfirmExit(); };
         Add(viesti);
     }
-
+/// <summary>
+/// Laskee lopulliset pisteet kerättyjen kukkien perusteella.
+/// </summary>
+/// <param name="keratytKukat"></param>
+/// <returns></returns>
     private int LaskeLopputulos(int keratytKukat)
     {
         int kerroin = 10;
