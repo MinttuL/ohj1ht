@@ -204,7 +204,7 @@ public class Kolikkokerailija : PhysicsGame
         int lopputulos = LaskeLopputulos(pistelaskuri.Value);
 
         MessageWindow viesti =
-            new MessageWindow($"Aika loppui!/nKerätyt kukat: {pistelaskuri.Value}/nLopulliset pisteet: {lopputulos}");
+            new MessageWindow($"Aika loppui!/nKerätyt kukat: {pistelaskuri.Value}\nLopulliset pisteet: {lopputulos}");
         viesti.Closed += delegate { ConfirmExit(); };
         Add(viesti);
     }
