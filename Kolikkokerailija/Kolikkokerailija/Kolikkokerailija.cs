@@ -150,10 +150,10 @@ public class Kolikkokerailija : PhysicsGame
         pistelaskuri = new IntMeter(0);
 
         Label pistenaytto = new Label();
-        pistenaytto.X = Screen.Left + 50;
-        pistenaytto.Y = Screen.Top - 100;
+        pistenaytto.X = Screen.Left +150;
+        pistenaytto.Y = Screen.Top -100;
         pistenaytto.Color = Color.LightPink;
-        pistenaytto.Title = ("Pisteet:");
+        pistenaytto.Title = "Pisteet: ";
         pistenaytto.BindTo(pistelaskuri);
 
         Add(pistenaytto);
@@ -180,11 +180,11 @@ public class Kolikkokerailija : PhysicsGame
         aikaAjastin.Start();
 
         Label aikanaytto = new Label();
-        aikanaytto.X = Screen.Right - 150;
-        aikanaytto.Y = Screen.Top - 100;
+        aikanaytto.X = Screen.Right -150;
+        aikanaytto.Y = Screen.Top -100;
         aikanaytto.Color = Color.LightPink;
         aikanaytto.DecimalPlaces = 1;
-        aikanaytto.Title = ("Aika: ");
+        aikanaytto.Title = "Aika: ";
         aikanaytto.BindTo(aikalaskuri);
 
         Add(aikanaytto);
@@ -206,7 +206,7 @@ public class Kolikkokerailija : PhysicsGame
         int lopputulos = LaskeLopputulos(pistelaskuri.Value);
 
         MessageWindow viesti =
-            new MessageWindow($"Aika loppui!/nKerätyt kukat: {pistelaskuri.Value}\nLopulliset pisteet: {lopputulos}");
+            new MessageWindow($"Aika loppui!\nKerätyt kukat: {pistelaskuri.Value}\nLopulliset pisteet: {lopputulos}");
         viesti.Closed += delegate { ConfirmExit(); };
         Add(viesti);
     }
