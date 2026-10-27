@@ -14,7 +14,7 @@ using Timer = Jypeli.Timer;
 /// </summary>
 public class Kolikkokerailija : PhysicsGame
 {
-    private const double PELIN_KESTO = 30.0; //Ei vielä asetettu koodiin
+    private const double PELIN_KESTO = 30.0; //Pelin kesto sekuntteina
     private const double HAHMON_NOPEUS = 1000.0;
 
     private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
@@ -218,6 +218,6 @@ public class Kolikkokerailija : PhysicsGame
     private int LaskeLopputulos(int keratytKukat)
     {
         int kerroin = 10;
-        return keratytKukat * kerroin;
+        return keratytKukat;
     }
 }
