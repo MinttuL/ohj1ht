@@ -36,7 +36,6 @@ public class Kolikkokerailija : PhysicsGame
         LuoKolikkoAjastin();
         LuoPistelaskuri();
         LuoAikalaskuri();
-        // Kirjoita ohjelmakoodisi tähän
 
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
@@ -111,7 +110,9 @@ public class Kolikkokerailija : PhysicsGame
         kolikkoAjastin.Timeout += LuoKolikko;
         kolikkoAjastin.Start();
     }
-
+    /// <summary >
+    /// Luodaan kolikko kentän ylälaitaan satunnaiseen kohtaan. Kolikon uolkomuoto muutettu kukaksi. 
+    /// </summary>
     private void LuoKolikko()
     {
         PhysicsObject kolikko = new PhysicsObject(50.0, 50.0);
@@ -217,7 +218,6 @@ public class Kolikkokerailija : PhysicsGame
 /// <returns></returns>
     private int LaskeLopputulos(int keratytKukat)
     {
-        int kerroin = 10;
         return keratytKukat;
     }
 }
