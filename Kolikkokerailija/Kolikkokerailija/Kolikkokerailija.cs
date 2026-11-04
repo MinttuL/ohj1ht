@@ -17,10 +17,29 @@ public class Kolikkokerailija : PhysicsGame
     private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
     private static readonly Image KUKKA_KUVA = LoadImage("kukka.png");
 
+    /// <summary>
+    /// Ajastin joka luo uusia kukkia.
+    /// </summary>
     private Timer kolikkoAjastin;
+    
+    /// <summary>
+    /// Laskuri kerätyille kukille.
+    /// </summary>
     private IntMeter pistelaskuri;
+    
+    /// <summary>
+    /// Laskuri peliajalle.
+    /// </summary>
     private DoubleMeter aikalaskuri;
+    
+    /// <summary>
+    /// Pelaajan hahmo.
+    /// </summary>
     private PhysicsObject suorakolmio;
+    
+    /// <summary>
+    /// Lista kentällä olevista kukista.
+    /// </summary>
     private List<PhysicsObject> aktiivisetKolikot = new List<PhysicsObject>();
 
     public override void Begin()
@@ -37,7 +56,8 @@ public class Kolikkokerailija : PhysicsGame
         PhoneBackButton.Listen(ConfirmExit, "Lopeta peli");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
     }
-
+    
+    
     /// <summary>
     /// Luodaan pelikentälle rajat ja tausta
     /// </summary>
@@ -58,6 +78,7 @@ public class Kolikkokerailija : PhysicsGame
         Camera.ZoomToLevel();
     }
 
+    
     /// <summary>
     /// Luodaan pelaaja
     /// </summary>
@@ -76,6 +97,7 @@ public class Kolikkokerailija : PhysicsGame
         Add(suorakolmio);
     }
 
+    
     /// <summary>
     /// Asetetaan ohjaimet
     /// </summary>
@@ -88,6 +110,7 @@ public class Kolikkokerailija : PhysicsGame
         Keyboard.Listen(Key.Right, ButtonState.Released, LiikutaHahmoa, null, 0.0);
     }
 
+    
     /// <summary>
     /// Asetetaan hahmon liikenopeus
     /// </summary>
@@ -97,6 +120,7 @@ public class Kolikkokerailija : PhysicsGame
         suorakolmio.Velocity = new Vector(nopeus, suorakolmio.Velocity.Y);
     }
 
+    
     /// <summary >
     /// Luodaan ajastin, joka luo uuden kolikon säännöllisin välein
     /// </summary>
@@ -107,6 +131,8 @@ public class Kolikkokerailija : PhysicsGame
         kolikkoAjastin.Timeout += LuoKolikko;
         kolikkoAjastin.Start();
     }
+    
+    
     /// <summary >
     /// Luodaan kolikko kentän ylälaitaan satunnaiseen kohtaan. Kolikon ulkomuoto muutettu kukaksi. 
     /// </summary>
@@ -128,6 +154,7 @@ public class Kolikkokerailija : PhysicsGame
         Add(kolikko);
     }
 
+    
     /// <summary>
     /// Poistetaan kerätty kolikko listasta ja pelialueelta
     /// </summary>
@@ -140,6 +167,7 @@ public class Kolikkokerailija : PhysicsGame
         kolikko.Destroy();
     }
 
+    
     /// <summary>
     /// Luodaan pistelaskuri näkyviin
     /// </summary>
@@ -157,6 +185,7 @@ public class Kolikkokerailija : PhysicsGame
         Add(pistenaytto);
     }
 
+    
     /// <summary>
     /// Luodaan aikalaskuri
     /// </summary>
@@ -187,6 +216,8 @@ public class Kolikkokerailija : PhysicsGame
 
         Add(aikanaytto);
     }
+    
+    
 /// <summary>
 /// Kutsutaan kun aika loppuu. Pysäyttää ajastimen, tyhjentää kentän ja näyttää lopputuloksen.
 /// </summary>
@@ -208,6 +239,8 @@ public class Kolikkokerailija : PhysicsGame
         viesti.Closed += delegate { ConfirmExit(); };
         Add(viesti);
     }
+
+
 /// <summary>
 /// Laskee lopulliset pisteet kerättyjen kukkien perusteella.
 /// </summary>
