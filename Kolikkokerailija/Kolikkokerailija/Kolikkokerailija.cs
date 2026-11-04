@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using Jypeli;
-using Jypeli.Assets;
-using Jypeli.Controls;
-using Jypeli.Widgets;
+
 using Timer = Jypeli.Timer;
 
 /// @author minttu lyytinen
@@ -14,7 +11,7 @@ using Timer = Jypeli.Timer;
 /// </summary>
 public class Kolikkokerailija : PhysicsGame
 {
-    private const double PELIN_KESTO = 30.0; //Pelin kesto sekuntteina
+    private const double PELIN_KESTO = 30.0; //Pelin kesto sekunteina
     private const double HAHMON_NOPEUS = 1000.0;
 
     private static readonly Image PRINSESSA_KUVA = LoadImage("prinsessa.png");
@@ -111,7 +108,7 @@ public class Kolikkokerailija : PhysicsGame
         kolikkoAjastin.Start();
     }
     /// <summary >
-    /// Luodaan kolikko kentän ylälaitaan satunnaiseen kohtaan. Kolikon uolkomuoto muutettu kukaksi. 
+    /// Luodaan kolikko kentän ylälaitaan satunnaiseen kohtaan. Kolikon ulkomuoto muutettu kukaksi. 
     /// </summary>
     private void LuoKolikko()
     {
