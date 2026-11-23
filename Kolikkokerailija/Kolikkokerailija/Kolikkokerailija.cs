@@ -5,9 +5,9 @@ using Jypeli;
 using Timer = Jypeli.Timer;
 
 /// @author minttu lyytinen
-/// @version 13.10.2026
+/// @version 23.11.2026
 /// <summary>
-/// Kolikkokeräilijä -peli Ohjelmointi 1 -kurssi
+/// Kukkienkeräilijä -peli Ohjelmointi 1 -kurssi
 /// </summary>
 public class Kukkienkerailija : PhysicsGame
 {
@@ -125,19 +125,19 @@ public class Kukkienkerailija : PhysicsGame
 
     
     /// <summary>
-    /// Luodaan ajastin, joka luo uuden kolikon säännöllisin välein
+    /// Luodaan ajastin, joka luo uuden kukan säännöllisin välein
     /// </summary>
     private void LuoKukkaAjastin()
     {
         kukkaAjastin = new Timer();
-        kukkaAjastin.Interval = 1.5; //uusi kolikko 1,5 sekunnin välein
+        kukkaAjastin.Interval = 1.5; //uusi kukka 1,5 sekunnin välein
         kukkaAjastin.Timeout += LuoKukka;
         kukkaAjastin.Start();
     }
     
     
     /// <summary>
-    /// Luodaan kolikko kentän ylälaitaan satunnaiseen kohtaan. Kolikon ulkomuoto muutettu kukaksi. 
+    /// Luodaan kukka kentän ylälaitaan satunnaiseen kohtaan. 
     /// </summary>
     private void LuoKukka()
     {
@@ -163,11 +163,11 @@ public class Kukkienkerailija : PhysicsGame
     /// </summary>
     /// <param name="pelaaja">Pelaajaolio, joka osuu kukkaan.</param>
     /// <param name="kukka">Kerättävä kukka-olio.</param>
-    private void OsumaKukkaan (PhysicsObject pelaaja, PhysicsObject kolikko)
+    private void OsumaKukkaan(PhysicsObject pelaaja, PhysicsObject kukka)
     {
         pistelaskuri.Value += 1;
-        aktiivisetKukat.Remove(kolikko);
-        kolikko.Destroy();
+        aktiivisetKukat.Remove(kukka);
+        kukka.Destroy();
     }
 
     
@@ -228,9 +228,9 @@ public class Kukkienkerailija : PhysicsGame
     {
         kukkaAjastin.Stop();
 
-        foreach (PhysicsObject kolikko in aktiivisetKukat)
+        foreach (PhysicsObject kukka in aktiivisetKukat)
         {
-            kolikko.Destroy();
+            kukka.Destroy();
         }
 
         aktiivisetKukat.Clear();
