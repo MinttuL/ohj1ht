@@ -9,7 +9,7 @@ using Timer = Jypeli.Timer;
 /// <summary>
 /// Kolikkokeräilijä -peli Ohjelmointi 1 -kurssi
 /// </summary>
-public class Kolikkokerailija : PhysicsGame
+public class Kukkienkerailija : PhysicsGame
 {
     private const double PELIN_KESTO = 30.0; //Pelin kesto sekunteina
     private const double HAHMON_NOPEUS = 1000.0;
@@ -20,7 +20,7 @@ public class Kolikkokerailija : PhysicsGame
     /// <summary>
     /// Ajastin joka luo uusia kukkia.
     /// </summary>
-    private Timer kolikkoAjastin;
+    private Timer kukkaAjastin;
     
     /// <summary>
     /// Laskuri kerätyille kukille.
@@ -35,13 +35,16 @@ public class Kolikkokerailija : PhysicsGame
     /// <summary>
     /// Pelaajan hahmo.
     /// </summary>
-    private PhysicsObject suorakolmio;
+    private PhysicsObject prinsessa;
     
     /// <summary>
     /// Lista kentällä olevista kukista.
     /// </summary>
-    private List<PhysicsObject> aktiivisetKolikot = new List<PhysicsObject>();
+    private List<PhysicsObject> aktiivisetKukat = new List<PhysicsObject>();
 
+    /// <summary>
+    /// Alustaa pelin ja käynnistää pelitoiminnot.
+    /// </summary>
     public override void Begin()
     {
         Gravity = new Vector(0, -400);
@@ -49,7 +52,7 @@ public class Kolikkokerailija : PhysicsGame
         LuoKentta();
         LuoPelaaja();
         AsetaOhjaimet();
-        LuoKolikkoAjastin();
+        LuoKukkaAjastin();
         LuoPistelaskuri();
         LuoAikalaskuri();
 
@@ -84,17 +87,17 @@ public class Kolikkokerailija : PhysicsGame
     /// </summary>
     private void LuoPelaaja()
     {
-        suorakolmio = new PhysicsObject(150.0, 200.0);
-        suorakolmio.Shape = Shape.Rectangle;
-        suorakolmio.Image = PRINSESSA_KUVA;
+        prinsessa = new PhysicsObject(150.0, 200.0);
+        prinsessa.Shape = Shape.Rectangle;
+        prinsessa.Image = PRINSESSA_KUVA;
 
-        suorakolmio.X = -0.0;
-        suorakolmio.Y = -300.0;
-        suorakolmio.Restitution = 0.0;
+        prinsessa.X = 0.0;
+        prinsessa.Y = -300.0;
+        prinsessa.Restitution = 0.0;
 
-        suorakolmio.MomentOfInertia = Double.PositiveInfinity;
+        prinsessa.MomentOfInertia = Double.PositiveInfinity;
 
-        Add(suorakolmio);
+        Add(prinsessa);
     }
 
     
@@ -114,56 +117,56 @@ public class Kolikkokerailija : PhysicsGame
     /// <summary>
     /// Asetetaan hahmon liikenopeus
     /// </summary>
-    /// <param name="nopeus"></param>
+    /// <param name="nopeus">Hahmon liikenopeus vaakasuunnassa.</param>
     private void LiikutaHahmoa(double nopeus)
     {
-        suorakolmio.Velocity = new Vector(nopeus, suorakolmio.Velocity.Y);
-    }
-
-    
-    /// <summary >
-    /// Luodaan ajastin, joka luo uuden kolikon säännöllisin välein
-    /// </summary>
-    private void LuoKolikkoAjastin()
-    {
-        kolikkoAjastin = new Timer();
-        kolikkoAjastin.Interval = 1.5; //uusi kolikko 1,5 sekunnin välein
-        kolikkoAjastin.Timeout += LuoKolikko;
-        kolikkoAjastin.Start();
-    }
-    
-    
-    /// <summary >
-    /// Luodaan kolikko kentän ylälaitaan satunnaiseen kohtaan. Kolikon ulkomuoto muutettu kukaksi. 
-    /// </summary>
-    private void LuoKolikko()
-    {
-        PhysicsObject kolikko = new PhysicsObject(50.0, 50.0);
-        kolikko.Shape = Shape.Circle;
-        kolikko.Color = Color.Yellow;
-        kolikko.Image = KUKKA_KUVA;
-
-        double satunnainenX = RandomGen.NextDouble(Level.Left + 50, Level.Right - 50.0);
-        kolikko.X = satunnainenX;
-        kolikko.Y = Level.Top - 40;
-
-        aktiivisetKolikot.Add(kolikko);
-
-        AddCollisionHandler(suorakolmio, kolikko, OsumaKolikkoon);
-
-        Add(kolikko);
+        prinsessa.Velocity = new Vector(nopeus, prinsessa.Velocity.Y);
     }
 
     
     /// <summary>
-    /// Poistetaan kerätty kolikko listasta ja pelialueelta
+    /// Luodaan ajastin, joka luo uuden kolikon säännöllisin välein
     /// </summary>
-    /// <param name="pelaaja"></param>
-    /// <param name="kolikko"></param>
-    private void OsumaKolikkoon(PhysicsObject pelaaja, PhysicsObject kolikko)
+    private void LuoKukkaAjastin()
+    {
+        kukkaAjastin = new Timer();
+        kukkaAjastin.Interval = 1.5; //uusi kolikko 1,5 sekunnin välein
+        kukkaAjastin.Timeout += LuoKukka;
+        kukkaAjastin.Start();
+    }
+    
+    
+    /// <summary>
+    /// Luodaan kolikko kentän ylälaitaan satunnaiseen kohtaan. Kolikon ulkomuoto muutettu kukaksi. 
+    /// </summary>
+    private void LuoKukka()
+    {
+        PhysicsObject kukka = new PhysicsObject(50.0, 50.0);
+        kukka.Shape = Shape.Circle;
+        kukka.Color = Color.Yellow;
+        kukka.Image = KUKKA_KUVA;
+
+        double satunnainenX = RandomGen.NextDouble(Level.Left + 50, Level.Right - 50.0);
+        kukka.X = satunnainenX;
+        kukka.Y = Level.Top - 40;
+
+        aktiivisetKukat.Add(kukka);
+
+        AddCollisionHandler(prinsessa, kukka, OsumaKukkaan);
+
+        Add(kukka);
+    }
+
+    
+    /// <summary>
+    /// Poistetaan kerätty kukka listasta ja pelialueelta
+    /// </summary>
+    /// <param name="pelaaja">Pelaajaolio, joka osuu kukkaan.</param>
+    /// <param name="kukka">Kerättävä kukka-olio.</param>
+    private void OsumaKukkaan (PhysicsObject pelaaja, PhysicsObject kolikko)
     {
         pistelaskuri.Value += 1;
-        aktiivisetKolikot.Remove(kolikko);
+        aktiivisetKukat.Remove(kolikko);
         kolikko.Destroy();
     }
 
@@ -176,8 +179,8 @@ public class Kolikkokerailija : PhysicsGame
         pistelaskuri = new IntMeter(0);
 
         Label pistenaytto = new Label();
-        pistenaytto.X = Screen.Left +150;
-        pistenaytto.Y = Screen.Top -100;
+        pistenaytto.X = Screen.Left + 150;
+        pistenaytto.Y = Screen.Top - 100;
         pistenaytto.Color = Color.LightPink;
         pistenaytto.Title = "Pisteet: ";
         pistenaytto.BindTo(pistelaskuri);
@@ -207,8 +210,8 @@ public class Kolikkokerailija : PhysicsGame
         aikaAjastin.Start();
 
         Label aikanaytto = new Label();
-        aikanaytto.X = Screen.Right -150;
-        aikanaytto.Y = Screen.Top -100;
+        aikanaytto.X = Screen.Right - 150;
+        aikanaytto.Y = Screen.Top - 100;
         aikanaytto.Color = Color.LightPink;
         aikanaytto.DecimalPlaces = 1;
         aikanaytto.Title = "Aika: ";
@@ -218,19 +221,19 @@ public class Kolikkokerailija : PhysicsGame
     }
     
     
-/// <summary>
-/// Kutsutaan kun aika loppuu. Pysäyttää ajastimen, tyhjentää kentän ja näyttää lopputuloksen.
-/// </summary>
+    /// <summary>
+    /// Kutsutaan kun aika loppuu. Pysäyttää ajastimen, tyhjentää kentän ja näyttää lopputuloksen.
+    /// </summary>
     private void PeliPaattyi()
     {
-        kolikkoAjastin.Stop();
+        kukkaAjastin.Stop();
 
-        foreach (PhysicsObject kolikko in aktiivisetKolikot)
+        foreach (PhysicsObject kolikko in aktiivisetKukat)
         {
             kolikko.Destroy();
         }
 
-        aktiivisetKolikot.Clear();
+        aktiivisetKukat.Clear();
 
         int lopputulos = LaskeLopputulos(pistelaskuri.Value);
 
@@ -241,11 +244,11 @@ public class Kolikkokerailija : PhysicsGame
     }
 
 
-/// <summary>
-/// Laskee lopulliset pisteet kerättyjen kukkien perusteella.
-/// </summary>
-/// <param name="keratytKukat"></param>
-/// <returns></returns>
+    /// <summary>
+    /// Laskee lopulliset pisteet kerättyjen kukkien perusteella.
+    /// </summary>
+    /// <param name="keratytKukat">Kerättyjen kukkien kokonaismäärä.</param>
+    /// <returns>Lopullinen pistemäärä.</returns>
     private int LaskeLopputulos(int keratytKukat)
     {
         return keratytKukat;
