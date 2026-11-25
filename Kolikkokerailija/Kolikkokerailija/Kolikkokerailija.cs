@@ -38,10 +38,15 @@ public class Kukkienkerailija : PhysicsGame
     private PhysicsObject prinsessa;
     
     /// <summary>
+    /// Pelikentän maa olio.
+    /// </summary>
+    private PhysicsObject maa;
+    
+    /// <summary>
     /// Lista kentällä olevista kukista.
     /// </summary>
     private List<PhysicsObject> aktiivisetKukat = new List<PhysicsObject>();
-
+    
     /// <summary>
     /// Alustaa pelin ja käynnistää pelitoiminnot.
     /// </summary>
@@ -73,7 +78,7 @@ public class Kukkienkerailija : PhysicsGame
 
         Level.Background.Color = Color.LightBlue;
 
-        PhysicsObject maa = PhysicsObject.CreateStaticObject(Level.Width, 150);
+        maa = PhysicsObject.CreateStaticObject(Level.Width, 150);
         maa.Y = Level.Bottom + 50;
         maa.Color = Color.ForestGreen;
         Add(maa);
@@ -153,6 +158,7 @@ public class Kukkienkerailija : PhysicsGame
         aktiivisetKukat.Add(kukka);
 
         AddCollisionHandler(prinsessa, kukka, OsumaKukkaan);
+        AddCollisionHandler(maa, kukka, KukkaOsuiMaahan);
 
         Add(kukka);
     }
@@ -166,6 +172,18 @@ public class Kukkienkerailija : PhysicsGame
     private void OsumaKukkaan(PhysicsObject pelaaja, PhysicsObject kukka)
     {
         pistelaskuri.Value += 1;
+        aktiivisetKukat.Remove(kukka);
+        kukka.Destroy();
+    }
+    
+    
+    /// <summary>
+    /// Poistetaan maahan osunut kukka listasta ja pelialueelta.
+    /// </summary>
+    /// <param name="maaOlio">Maa-olio, johon kukka osuu. </param>
+    ///  <param name="kukka">Maahan osuva kukka-olio.</param>
+    private void KukkaOsuiMaahan(PhysicsObject maaOlio, PhysicsObject kukka)
+    {
         aktiivisetKukat.Remove(kukka);
         kukka.Destroy();
     }
