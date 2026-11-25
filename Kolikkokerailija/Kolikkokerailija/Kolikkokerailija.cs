@@ -5,7 +5,7 @@ using Jypeli;
 using Timer = Jypeli.Timer;
 
 /// @author minttu lyytinen
-/// @version 23.11.2026
+/// @version 25.11.2026
 /// <summary>
 /// Kukkienkeräilijä -peli Ohjelmointi 1 -kurssi
 /// </summary>
