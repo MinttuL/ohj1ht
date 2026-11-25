@@ -6,7 +6,7 @@ Tekijä: Minttu Lyytinen
 
 Työ git-varaston osoite: https://github.com/MinttuL/ohj1ht.git
 
-Pelin nimi: Kolikkokeräilijä
+Pelin nimi: Kukkienkeräilijä
 
 Pelialusta: Windows
 
@@ -14,11 +14,11 @@ Pelaajien lukumäärä: 1
 
 ## Pelin tarina
 
-Pelin hahmo seikkailee pelialueella metsästäen kultaisia kolikoita.
+Pelin hahmo (prinsessa) seikkailee pelialueella metsästäen taivaalta putoavia kukkia.
 
 ## Pelin idea ja tavoitteet
 
-Kolikkojen keräily. Tavoitteena kerätä mahdollisimman paljon kolikkoja ja saada mahdollisimman korkea pistemäärä.
+Kukkien keräily. Tavoitteena kerätä mahdollisimman paljon kukkia ja saada mahdollisimman korkea pistemäärä.
 
 ## Hahmotelma pelistä
 
@@ -30,16 +30,16 @@ Lokakuu
 
 - Pelin perusrakenne, pelialue ja pelaaja
 - Pelaajan liikutus näytöllä
-- Kolikoiden luominen ja putoaminen ylhäältä alas
+- Kukkien luominen ja putoaminen ylhäältä alas
 
 Marraskuu
 
-- Pelaajan ja kolikoiden törmäykset + pisteenlasku
+- Pelaajan ja kukkien törmäykset + pisteenlasku
 - Lisään listan, silmukat ja tarvittavat aliohjelmat peliin
 - Lisään ajastimen, pelin päättymisen ja viimeistelen pelin
 
 Jos aikaa jää
 
-- Lisään peliin erilaisia kolikoita tai kerättäviä esineitä
-- Teen pelistä haastavamman esimerkiksi nopeuttamalla kolikoiden putoamista
+- Lisään peliin erilaisia kerättäviä esineitä
+- Teen pelistä haastavamman esimerkiksi nopeuttamalla kukkien putoamista
 - Viimeistelen pelin ulkoasua ja käyttöliittymää
